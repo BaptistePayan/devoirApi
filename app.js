@@ -1,10 +1,17 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv').config({ path: './env/.env' }); // Charger les variables d'environnement
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const session = require('express-session')
+const MongoDBStore = require('connect-mongodb-session')(session); // Utiliser MongoDB comme store de session
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const methodOverride = require('method-override');
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 var app = express();
 
