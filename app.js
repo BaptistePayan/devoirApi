@@ -13,7 +13,12 @@ const methodOverride = require('method-override');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-var app = express();
+const mongodb = require('./db/mongo');
+
+// Initialisation de la connexion à MongoDB
+mongodb.initClientDbConnection();
+
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
