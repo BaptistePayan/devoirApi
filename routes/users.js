@@ -26,5 +26,7 @@ router.post('/authenticate', service.authenticate);
 
 router.post('/login-form', userService.loginFromForm);
 
+router.get('/', service.getAllUsers)
+
 
 module.exports = router;
