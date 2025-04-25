@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './env/.env' }); // Charger les variables d'environnement
+//require('dotenv').config({ path: './env/.env' }); // Charger les variables d'environnement
 
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session); // Utiliser MongoDB comme store de session
