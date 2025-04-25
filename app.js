@@ -66,4 +66,10 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+//gestion des erreurs
+app.use(function(req, res, next) {
+    res.status(404).json({name: 'API', version: "1.0", status: 404, message: 'Not Found'});
+});
+
+
 module.exports = app;

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tableau de bord</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body >
+  <h1>Tableau de bord</h1>
+  <div class="container3">
+    <p>Bienvenue <strong><%= user.username %></strong> !</p>
+    <p>Adresse de messagerie : <strong><%= user.email %></strong></p>
+
+
+   <ul>
+    <li><a href="/catways">Gestion des Catways</a></li>
+    <li><a href="/reservations">Gestion des Réservations</a></li>
+    <li><a href="/users">Gestion des Utilisateurs</a></li>
+    <li><a href="/">Se déconnecter</a></li>
+  </ul>
+</div>
+</body>
+
+</html>
