@@ -1,4 +1,4 @@
-//require('dotenv').config({ path: './env/.env' }); // Charger les variables d'environnement
+require('dotenv').config({ path: './env/.env' }); // variables d'environnement
 
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session); // Utiliser MongoDB comme store de session
@@ -12,16 +12,20 @@ const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const catwaysRouter = require('./routes/catways');  
+const reservationsRouter = require('./routes/reservations');  
+const loginFormRouter = require('./routes/loginFormRoute'); 
 
 const mongodb = require('./db/mongo');
 
-// Initialisation de la connexion à MongoDB
+// connexion à MongoDB
 mongodb.initClientDbConnection();
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 //moteur ejs
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -36,19 +40,18 @@ store.on('error', function(error) {
 });
 
 
-// Utilise method-override pour remplacer la méthode POST par DELETE ou PUT
 app.use(methodOverride('_method')); // '_method' correspond au nom du champ caché dans le formulaire
 
-// Middleware pour gérer la session
+// Middleware 
 app.use(session({
-    secret: process.env.SECRET_KEY || 'clé_secrète', // Clé secrète pour sécuriser les sessions
-    resave: false,  // Ne pas resauvegarder la session si elle n'a pas été modifiée
-    saveUninitialized: false,  // Ne pas créer une session pour les visiteurs non authentifiés
-    store: store, // Utiliser MongoDBStore
+    secret: process.env.SECRET_KEY || 'clé_secrète', 
+    resave: false,  
+    saveUninitialized: false,  
+    store: store, 
     cookie: {
-        httpOnly: true,  // Sécuriser le cookie pour qu'il ne soit pas accessible via JavaScript
-        secure: process.env.NODE_ENV === 'production', // Utiliser un cookie sécurisé en production
-        maxAge: 60 * 60 * 1000  // Durée de vie du cookie (1 heure ici)
+        httpOnly: true,  
+        secure: process.env.NODE_ENV === 'production', 
+        maxAge: 60 * 60 * 1000  //durée d'1 heure pour le cookie
     }
 }));
 
@@ -65,6 +68,9 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/catways', catwaysRouter);  
+app.use('/reservations', reservationsRouter);  
+app.use('/login', loginFormRouter);
 
 //gestion des erreurs
 app.use(function(req, res, next) {
