@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier une Reservation</title>
+  <style>
+   
+  </style>
+</head>
+<body>
+
+  <a href="/reservations">Liste des Reservations</a>
+  <h1 style="text-align: center;">Modifier la Reservation</h1>
+  <form action="/reservations/editreservations/<%= reservation._id %>" method="POST">
+
+    <div>
+
+    
+        <label for="catwayNumber">Numero du Catway:</label>
+        <input type="text" id="catwayNumber" name="catwayNumber" value="<%= reservation.catwayNumber %>" required>
+      </div>
+    <div>
+
+    
+      <label for="clientName">Nom du client:</label>
+      <input type="text" id="clientName" name="clientName" value="<%= reservation.clientName %>" required>
+    </div>
+
+    <div>
+
+    
+        <label for="boatName">Nom du bateau</label>
+        <input type="text" id="boatName" name="boatName" value="<%= reservation.boatName %>" required>
+      </div>
+
+      <div>
+      <label for="startDate">Date début</label>
+      <input type="text" id="startDate" name="startDate" value="<%= reservation.startDate %>" required>
+    </div>
+
+    <div>
+        <label for="endDate">Date fin</label>
+        <input type="text" id="endDate" name="endDate" value="<%= reservation.endDate %>" required>
+      </div>
+
+    <button type="submit">Sauvegarder</button>
+  </form>
+  <a class="back-link" href="/reservations">Retour à la liste des Reservations</a>
+</body>
+</html>

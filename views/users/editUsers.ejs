@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un Utilisateurs</title>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Modifier le utilisateur</h1>
+  <form action="/users/editUsers/<%= users._id %>" method="POST">
+    <div>
+
+    
+      <label for="password">Mot de passe :</label>
+      <input type="text" id="password" name="password" value="<%= users.password %>" required>
+    </div>
+    <button type="submit">Sauvegarder</button>
+  </form>
+  <a class="back-link" href="/users">Retour à la liste des Utilisateurs</a>
+</body>
+</html>

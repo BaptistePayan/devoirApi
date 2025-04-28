@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un Catway</title>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Modifier le Catway</h1>
+  <form action="/catways/editcatways/<%= catway._id %>" method="POST">
+    <div>
+
+    
+      <label for="catwayState">État du Catway :</label>
+      <input type="text" id="catwayState" name="catwayState" value="<%= catway.catwayState %>" required>
+    </div>
+    <button type="submit">Sauvegarder</button>
+  </form>
+  <a class="back-link" href="/catways">Retour à la liste des Catways</a>
+</body>
+</html>

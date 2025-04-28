@@ -42,7 +42,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     try {
         const reservation = await reservations.findByIdAndDelete(req.params.id);
-        console.log(reservation);  
+        console.log(reservation);  // j'ai ajouté ce log pour voir ce qui est renvoyé
         console.log(id);
         if (!reservation) {
             return res.status(404).json({ message: 'Réservation non trouvée' });

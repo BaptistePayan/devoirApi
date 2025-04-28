@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Catways</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+  
+</head>
+<body>
+  <h1>Liste des Catways</h1>
+  <a href="/dashboard">Tableau de Bord</a>
+  <a href="/catways/addCatways">Ajouter un Catway</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Type</th>
+        <th>Etat</th>
+        <th>Actions</th>
+
+    
+      </tr>
+    </thead>
+    <tbody>
+      <% catways.forEach(res => { %>
+        <tr>
+          <td><%= res.catwayNumber %></td>
+          <td><%= res.catwayType %></td>
+          <td><%= res.catwayState %></td>
+          <td>
+            <!-- Bouton Modifier -->
+            <a href="/catways/editCatways/<%= res._id %>">
+              <button >Modifier</button>
+            </a>
+            
+            <!-- Bouton Supprimer -->
+            <form action="/reservations/delete/<%= res._id %>" method="POST" onsubmit="return confirm('Confirmer la suppression ?')">
+              <button type="submit">Supprimer</button>
+            </form>
+
+            
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+
+  <script>
+    document.querySelectorAll('.delete-btn').forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const id = button.dataset.id;
+        const row = button.closest('tr');
+  
+        if (confirm("Voulez vous vraiement supprimer le Catway ?")) {
+          try {
+            const response = await fetch(`/catways/delete/${id}`, {
+              method: 'POST',
+            });
+  
+            if (response.ok) {
+              row.remove(); // Supprime la ligne du tableau
+            } else {
+              alert("Erreur lors de la suppression.");
+            }
+          } catch (error) {
+            console.error("Erreur fetch :", error);
+            alert("Erreur serveur.");
+          }
+        }
+      });
+    });
+  </script>
+  
+
+</body>
+</html>

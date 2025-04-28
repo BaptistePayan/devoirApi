@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Réservations</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h1>Liste des Réservations</h1>
+
+  <a href="/dashboard">Tableau de Bord</a>
+  <a href="/reservations/addReservations">Ajouter une Réservation</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Bateau</th>
+        <th>Catway</th>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% reservations.forEach(res => { %>
+        <tr>
+          <td><%= res.clientName %></td>
+          <td><%= res.boatName %></td>
+          <td><%= res.catwayNumber %></td>
+          <td><%= new Date(res.startDate).toLocaleDateString() %></td>
+          <td><%= new Date(res.endDate).toLocaleDateString() %></td>
+          <td>
+            <!-- Bouton Modifier -->
+            <a href="/reservations/edit/<%= res._id %>">
+
+              <button >Modifier</button>
+            </a>
+            
+            <!-- Bouton Supprimer -->
+                <button class="delete-btn" data-id="<%= res._id %>">Supprimer</button>
+
+            
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <script>
+    document.querySelectorAll('.delete-btn').forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const id = button.dataset.id;
+        const row = button.closest('tr');
+  
+        if (confirm("Voulez vous vraiment supprimer la réservation ?")) {
+          try {
+            const response = await fetch(`/reservations/delete/${id}`, { // Modification ici
+              method: 'DELETE',
+            });
+  
+            if (response.ok) {
+              row.remove(); // Supprime la ligne du tableau
+            } else {
+              alert("Erreur lors de la suppression.");
+            }
+          } catch (error) {
+            console.error("Erreur fetch :", error);
+            alert("Erreur serveur.");
+          }
+        }
+      });
+    });
+  </script>
+  
+
+
+
+</body>
+</html>
