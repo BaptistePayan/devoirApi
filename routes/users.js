@@ -11,7 +11,7 @@ router.get('/addUsers', (req, res) => {
 })
 
 router.get('/dashboard', (req, res) => {
-  res.render('dashboard'); // 
+  res.render('dashboard'); 
 });
 
 router.get('/:id', private.checkJWT, service.getUserById);
