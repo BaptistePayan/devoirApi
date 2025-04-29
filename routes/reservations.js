@@ -6,6 +6,8 @@ const private = require('../middlewares/privates');
 
 router.get('/', service.getAllReservations);
 
+router.get('/addReservations', service.showAddReservationForm)
+
 router.post('/', service.add);
 
 router.get('/:id', service.getReservationById);

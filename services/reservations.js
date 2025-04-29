@@ -12,6 +12,10 @@ exports.getReservationById = async (req, res) => {
     }
 }   
 
+exports.showAddReservationForm = async (req, res) => {
+    res.render('reservations/addReservations')
+}
+
 exports.add = async (req, res) => {
     const { catwayNumber, clientName, boatName, startDate, endDate } = req.body;
     try {
