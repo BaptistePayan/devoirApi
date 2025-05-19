@@ -28,6 +28,10 @@ const app = express();
 app.get('/', (req, res) => {
     res.send('API is running')
 })
+app.get('/test', (req, res) => {
+    res.send('ok test')
+})
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 //moteur ejs
