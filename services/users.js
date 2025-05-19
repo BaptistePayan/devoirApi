@@ -4,6 +4,7 @@ const User = require('../models/users');
 const bcrypt = require('bcryptjs');   
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = process.env.SECRET_KEY;
+const apiUrl = process.env.API_URL;
 
 
 exports.getUserById = async (req, res) => {    //ajout d'un user par id

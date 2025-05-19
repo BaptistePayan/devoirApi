@@ -1,6 +1,7 @@
 // connexion
 const User = require('../models/users');
 const bcrypt = require('bcryptjs'); 
+const apiUrl = process.env.API_URL;
 
 exports.loginFromForm = async (req, res) => {
     const { email, password } = req.body;

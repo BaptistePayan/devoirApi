@@ -1,4 +1,5 @@
 const reservations = require('../models/reservations');
+const apiUrl = process.env.API_URL;
 
 exports.getReservationById = async (req, res) => {
     try {

@@ -4,6 +4,7 @@ const User = require('../models/users');
 const private = require('../middlewares/privates');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs'); 
+const apiUrl = process.env.API_URL;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const apiUrl = process.env.API_URL;
 
 const service = require('../services/users');
 const private = require('../middlewares/privates');

@@ -1,4 +1,5 @@
 const catways = require('../models/catways');
+const apiUrl = process.env.API_URL;
 
 exports.getCatwayById = async (req, res) => {
     try {

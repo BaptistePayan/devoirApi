@@ -1,6 +1,7 @@
 // Ce module initialise la connexion à la base de données MongoDB en utilisant Mongoose. préalablement initialisé dans l'environnement
 
 const mongoose = require('mongoose');
+const apiUrl = process.env.API_URL;
 
 const clientOptions = {
   dbName: 'Port',

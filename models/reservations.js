@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const apiUrl = process.env.API_URL;
 
 const ReservationSchema = new Schema({  
     catwayNumber: {
