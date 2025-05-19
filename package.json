@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "env-cmd -f ./env/.env nodemon ./bin/www",
     "prod": "env-cmd -f ./env/.env nodemon ./bin/www",
-    "start": "node app.js",
+    "start": "node ./bin/www",
     "build": "echo 'No build step necessary'"
   },
   "dependencies": {
